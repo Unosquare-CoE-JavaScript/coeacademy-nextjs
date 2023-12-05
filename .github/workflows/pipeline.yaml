@@ -27,6 +27,22 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{secrets.AWS_ACCESS_KEY_ID}}
           password: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      
+      - name: Create app environment variables file
+        run: |
+          touch .env.production
+
+          echo "NEXT_PUBLIC_FIREBASE_WEB_APP_API_KEY=${{ secrets.FIREBASE_WEB_APP_API_KEY }}" >> .env.production
+          echo "NEXT_PUBLIC_AUTH_DOMAIN=${{ secrets.AUTH_DOMAIN }}" >> .env.production
+          echo "NEXT_PUBLIC_PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env.production
+          echo "NEXT_PUBLIC_STORAGE_BUCKET=${{ secrets.STORAGE_BUCKET }}" >> .env.production
+          echo "NEXT_PUBLIC_FIREBASE_WEB_APP_SENDER_ID=${{ secrets.FIREBASE_WEB_APP_SENDER_ID }}" >> .env.production
+          echo "NEXT_PUBLIC_FIREBASE_WEB_APP_APP_ID=${{ secrets.FIREBASE_WEB_APP_APP_ID }}" >> .env.production
+
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env.production
+          echo "FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}" >> .env.production
+          echo "FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}" >> .env.production
+          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" >> .env.production
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -37,7 +53,17 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/coeacademy-nextjs:latest
             ${{ env.REGISTRY }}/coeacademy-nextjs:${{ github.sha }}
-      
+          #secrets: |
+          #  "FIREBASE_WEB_APP_API_KEY=${{ secrets.FIREBASE_WEB_APP_API_KEY }}"
+          #  "AUTH_DOMAIN=${{ secrets.AUTH_DOMAIN }}"
+          #  "PROJECT_ID=${{ secrets.PROJECT_ID }}"
+          #  "STORAGE_BUCKET=${{ secrets.STORAGE_BUCKET }}"
+          #  "FIREBASE_WEB_APP_SENDER_ID=${{ secrets.FIREBASE_WEB_APP_SENDER_ID }}"
+          #  "FIREBASE_WEB_APP_APP_ID=${{ secrets.FIREBASE_WEB_APP_APP_ID }}"
+          #  "FIREBASE_PROJECT_ID=${{secrets.FIREBASE_PROJECT_ID}}"
+          #  "FIREBASE_CLIENT_EMAIL=${{secrets.FIREBASE_CLIENT_EMAIL}}"
+          #  "FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}"
+          #  "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}"
 
   deploy:
     runs-on: ubuntu-latest
