@@ -28,21 +28,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{secrets.AWS_ACCESS_KEY_ID}}
           password: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-      
-      #- name: Create app environment variables file
-      #  uses: SpicyPizza/create-envfile@v2.0
-      #  with:
-      #    file_name: .env.local
-      #    envkey_NEXT_PUBLIC_FIREBASE_WEB_APP_API_KEY: ${{ secrets.FIREBASE_WEB_APP_API_KEY }}
-      #    envkey_NEXT_PUBLIC_AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-      #    envkey_NEXT_PUBLIC_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-      #    envkey_NEXT_PUBLIC_STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-      #    envkey_NEXT_PUBLIC_FIREBASE_WEB_APP_SENDER_ID: ${{ secrets.FIREBASE_WEB_APP_SENDER_ID }}
-      #    envkey_NEXT_PUBLIC_FIREBASE_WEB_APP_APP_ID: ${{ secrets.FIREBASE_WEB_APP_APP_ID }}
-      #    envkey_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-      #    envkey_FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-      #    envkey_FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-      #    envkey_NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
 
       - name: Create app environment variables file
         run: |
