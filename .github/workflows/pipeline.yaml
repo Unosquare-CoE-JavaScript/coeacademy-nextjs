@@ -53,21 +53,11 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/coeacademy-nextjs:latest
             ${{ env.REGISTRY }}/coeacademy-nextjs:${{ github.sha }}
-          #secrets: |
-          #  "FIREBASE_WEB_APP_API_KEY=${{ secrets.FIREBASE_WEB_APP_API_KEY }}"
-          #  "AUTH_DOMAIN=${{ secrets.AUTH_DOMAIN }}"
-          #  "PROJECT_ID=${{ secrets.PROJECT_ID }}"
-          #  "STORAGE_BUCKET=${{ secrets.STORAGE_BUCKET }}"
-          #  "FIREBASE_WEB_APP_SENDER_ID=${{ secrets.FIREBASE_WEB_APP_SENDER_ID }}"
-          #  "FIREBASE_WEB_APP_APP_ID=${{ secrets.FIREBASE_WEB_APP_APP_ID }}"
-          #  "FIREBASE_PROJECT_ID=${{secrets.FIREBASE_PROJECT_ID}}"
-          #  "FIREBASE_CLIENT_EMAIL=${{secrets.FIREBASE_CLIENT_EMAIL}}"
-          #  "FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}"
-          #  "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}"
 
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_ecr
+    environment: Preview
 
     steps:
       - name: Get public IP 
