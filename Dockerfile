@@ -30,7 +30,7 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 # This will do the trick, use the corresponding env file for each environment.
-COPY .env.production ./
+COPY .env.local .env.production
 RUN npm run build
 
 
