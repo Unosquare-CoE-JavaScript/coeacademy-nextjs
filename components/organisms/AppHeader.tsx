@@ -1,7 +1,15 @@
-import { AppBar, Toolbar, Container, Box, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import { AddPlayListButton, AppSearch, UserDropdown } from "../molecules";
+import SeedPlaylistsButton from "@/components/molecules/SeedPlaylistsButton";
 
 export default function AppHeader() {
   return (
@@ -31,10 +39,11 @@ export default function AppHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <Box sx={{ ml: { xs: 0, md: 2 } }}>
+          <Stack sx={{ ml: { xs: 0, md: 2 } }} direction="row" spacing={2}>
             <AddPlayListButton />
+            <SeedPlaylistsButton />
             <UserDropdown />
-          </Box>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>

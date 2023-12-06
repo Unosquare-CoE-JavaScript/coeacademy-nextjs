@@ -17,6 +17,7 @@ export interface IPlayListCollection {
   id?: string;
   title: string;
   link: string;
+  image: string;
   description: string;
   owner: IUserCollection;
   createdAt: Timestamp;

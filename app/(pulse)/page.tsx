@@ -25,7 +25,7 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Container sx={{ py: 8 }} maxWidth="xl">
+      <Container sx={{ mt: 6, mb: 8 }} maxWidth="xl">
         <PlayLists />
       </Container>
     </>

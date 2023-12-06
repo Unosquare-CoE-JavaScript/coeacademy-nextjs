@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardActions,
@@ -11,65 +10,33 @@ import {
 } from "@mui/material";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { usePlayListCollection } from "@/hooks";
-import { IPlayListCollection } from "@/lib/types";
+import { fetchPlaylists } from "@/app/data/fetchPlaylists";
 
 async function PlayLists() {
-  const { getPlayLists } = usePlayListCollection();
-  const playlists: IPlayListCollection[] = await getPlayLists();
+  const playlists = await fetchPlaylists();
 
   return (
     <Grid container spacing={4}>
-      {playlists.map(({ id, title, link, description, owner, createdAt }) => (
-        <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-          <Card
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box sx={{ display: "flex" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
+      {playlists.map(({ id, title, owner, createdAt, image }) => (
+        <Grid item key={id} xs={6} sm={4} md={3} lg={2}>
+          <Card sx={{ maxWidth: 200 }}>
+            <CardMedia
+              component="img"
+              image={image}
+              alt={title}
+              sx={{ width: 200, height: 200 }}
+            />
+            <CardContent>
+              <Typography
+                variant="subtitle1"
+                className="truncate"
+                title={title}
               >
-                <CardContent>
-                  <Typography component="h5" variant="h5">
-                    {title}
-                  </Typography>
-                  <Typography
-                    component="p"
-                    variant="subtitle1"
-                    color="text.secondary"
-                  >
-                    {owner.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      flexGrow: 1,
-                    }}
-                    component="p"
-                    variant="caption"
-                    color="text.secondary"
-                  >
-                    {createdAt.toDate().toDateString()}
-                  </Typography>
-                </CardContent>
-              </Box>
-              <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image="https://source.unsplash.com/random?wallpapers"
-                alt="Live from space album cover"
-              />
-            </Box>
-
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography>{description}</Typography>
+                {title}
+              </Typography>
+              <Typography component="p" variant="body2" color="text.secondary">
+                Added by {owner.name} on {createdAt.toDate().toDateString()}
+              </Typography>
             </CardContent>
             <CardActions className="flex justify-between">
               <Button size="small">Listen</Button>

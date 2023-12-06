@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-
-import { IconButton, Tooltip } from "@mui/material";
+import { Button } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-
 import { AppForm, AppModal } from ".";
-
-import submitNewPlaylist from "@/app/actions";
+import { createNewPlaylist } from "@/app/actions";
 import { newPlaylistFormFields } from "@/lib/utils";
 
 export default function AddPlayListButton() {
@@ -18,22 +15,19 @@ export default function AddPlayListButton() {
 
   return (
     <>
-      <Tooltip title="Add new playlist">
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-          onClick={handleOpen}
-        >
-          <PlaylistAddIcon />
-        </IconButton>
-      </Tooltip>
+      <Button
+        color="inherit"
+        variant="outlined"
+        onClick={handleOpen}
+        startIcon={<PlaylistAddIcon />}
+      >
+        Add Playlist
+      </Button>
       <AppModal open={open} handleClose={handleClose}>
         <AppForm
           fields={newPlaylistFormFields}
           handleSubmit={async (formData) => {
-            const data = await submitNewPlaylist(formData);
-            console.log({ msg: data.msg });
+            const data = await createNewPlaylist(formData);
             handleClose();
           }}
           submitOptions={{
