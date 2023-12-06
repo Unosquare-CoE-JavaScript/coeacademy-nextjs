@@ -3,7 +3,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { PlayLists } from "@/components/organisms";
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const query = searchParams?.query || "";
+
   return (
     <>
       <Box
@@ -26,7 +32,7 @@ export default function Home() {
       </Box>
 
       <Container sx={{ mt: 6, mb: 8 }} maxWidth="xl">
-        <PlayLists />
+        <PlayLists query={query} />
       </Container>
     </>
   );

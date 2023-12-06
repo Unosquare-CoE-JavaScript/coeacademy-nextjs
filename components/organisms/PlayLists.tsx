@@ -12,8 +12,21 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { fetchPlaylists } from "@/app/data/fetchPlaylists";
 
-async function PlayLists() {
-  const playlists = await fetchPlaylists();
+interface PlaylistsProps {
+  query: string;
+}
+
+async function PlayLists(props: PlaylistsProps) {
+  const { query } = props;
+  const playlists = await fetchPlaylists(query);
+
+  if (playlists.length === 0) {
+    return (
+      <Typography sx={{ textAlign: "center" }}>
+        No playlists found :c
+      </Typography>
+    );
+  }
 
   return (
     <Grid container spacing={4}>

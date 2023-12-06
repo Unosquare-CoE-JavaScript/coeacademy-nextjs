@@ -1,8 +1,8 @@
 "use client";
 
-import { InputBase, alpha, styled } from "@mui/material";
-
+import { alpha, InputBase, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,6 +46,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function AppSearch() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  function handleSearch(term: string) {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("query", term);
+    } else {
+      params.delete("query");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -54,6 +68,8 @@ function AppSearch() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
+        defaultValue={searchParams.get("query")?.toString()}
+        onChange={(e) => handleSearch(e.target.value)}
       />
     </Search>
   );
