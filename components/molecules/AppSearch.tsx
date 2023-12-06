@@ -3,6 +3,7 @@
 import { alpha, InputBase, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -50,7 +51,7 @@ function AppSearch() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  function handleSearch(term: string) {
+  const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
@@ -58,7 +59,7 @@ function AppSearch() {
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
-  }
+  }, 300);
 
   return (
     <Search>

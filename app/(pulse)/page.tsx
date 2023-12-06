@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { PlayLists } from "@/components/organisms";
+import { Suspense } from "react";
 
 export default function Home({
   searchParams,
@@ -32,7 +33,9 @@ export default function Home({
       </Box>
 
       <Container sx={{ mt: 6, mb: 8 }} maxWidth="xl">
-        <PlayLists query={query} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <PlayLists query={query} />
+        </Suspense>
       </Container>
     </>
   );
