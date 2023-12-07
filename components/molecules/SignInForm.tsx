@@ -35,6 +35,9 @@ export default function SignInForm() {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
+            inputProps={{
+              "data-testid": "txtEmail",
+            }}
             margin="normal"
             required
             fullWidth
@@ -50,6 +53,9 @@ export default function SignInForm() {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            inputProps={{
+              "data-testid": "txtPassword",
+            }}
             margin="normal"
             required
             fullWidth
@@ -64,6 +70,7 @@ export default function SignInForm() {
         </Grid>
       </Grid>
       <Button
+        data-testid={'btnLoginSubmit'}
         type="submit"
         fullWidth
         variant="outlined"
