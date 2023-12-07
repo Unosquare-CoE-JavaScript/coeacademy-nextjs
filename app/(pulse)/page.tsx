@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { PlayLists } from "@/components/organisms";
 import { Suspense } from "react";
+import Welcome from "@/components/organisms/Welcome";
 
 export default function Home({
   searchParams,
@@ -10,6 +11,7 @@ export default function Home({
   searchParams: { [key: string]: string | undefined };
 }) {
   const query = searchParams?.query || "";
+  const msg = searchParams?.msg
 
   return (
     <>
@@ -27,7 +29,8 @@ export default function Home({
             color="text.primary"
             gutterBottom
           >
-            PlayList Feed
+            <p>PlayList Feed</p>
+            {msg && <Welcome />}
           </Typography>
         </Container>
       </Box>
