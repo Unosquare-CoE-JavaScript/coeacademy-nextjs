@@ -44,7 +44,6 @@ async function PlayLists(props: PlaylistsProps) {
             </CardMedia>
             <CardContent>
               <Typography
-                variant="subtitle1"
                 className="truncate"
                 title={title}
               >

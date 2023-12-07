@@ -30,6 +30,7 @@ function UserDropdown() {
     <>
       <Tooltip title="Account settings">
         <IconButton
+          aria-label="Account settings menu button"
           onClick={handleOpenUserMenu}
           size="small"
           aria-controls={Boolean(anchorElUser) ? "account-menu" : undefined}
@@ -42,6 +43,7 @@ function UserDropdown() {
       <Menu
         anchorEl={anchorElUser}
         id="account-menu"
+        aria-label="account-menu"
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
         onClick={handleCloseUserMenu}
@@ -76,11 +78,11 @@ function UserDropdown() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={() => ""}>
+        <MenuItem onClick={() => ""} aria-label="profile">
           <Avatar /> Profile
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => signOut()}>
+        <MenuItem onClick={() => signOut()} aria-label="sign-out">
           <ListItemIcon>
             <LogoutIcon fontSize="small" />
           </ListItemIcon>
