@@ -11,6 +11,7 @@ import {
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { fetchPlaylists } from "@/app/data/fetchPlaylists";
+import Image from "next/image";
 
 interface PlaylistsProps {
   query: string;
@@ -33,12 +34,14 @@ async function PlayLists(props: PlaylistsProps) {
       {playlists.map(({ id, title, owner, createdAt, image }) => (
         <Grid item key={id} xs={6} sm={4} md={3} lg={2}>
           <Card sx={{ maxWidth: 200 }}>
-            <CardMedia
-              component="img"
-              image={image}
-              alt={title}
-              sx={{ width: 200, height: 200 }}
-            />
+            <CardMedia>
+              <Image
+                  src={image}
+                  width={250}
+                  height={250}
+                  alt="Live from space album cover"
+                />
+            </CardMedia>
             <CardContent>
               <Typography
                 variant="subtitle1"
